@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: white;
+            margin-top: 50px;
+        }
+        .container {
+            width: 320px;
+            margin: auto;
+            padding: 20px;
+            background: #2d2d39;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 10px;
+            background: #ff006a;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #00ffea;
+            color: #000;
+        }
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            color: #00ffea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <button class="btn" onclick="login()">Login</button>
+        <a href="./forgetpassword.html" class="forgot-password">Forgot Password?</a>
+    </div>
+
+    <script>
+        function login() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            
+            if (username && password) {
+                sessionStorage.setItem("loggedInUser", username);
+                window.location.href = "dashboard.html";
+            } else {
+                alert("Please enter both username and password");
+            }
+        }
+    </script>
+</body>
+</html>
