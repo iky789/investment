@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #1a1a1a;
+            color: white;
+        }
+        .container {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            background: #2d2d39;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            outline: none;
+            background: #333;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #00ffea;
+            color: #000;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #ff006a;
+            color: #fff;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Reset Your Password</h2>
+        <p>Enter your new password below.</p>
+        <input type="password" id="new-password" placeholder="New Password">
+        <input type="password" id="confirm-password" placeholder="Confirm Password">
+        <button class="btn" onclick="resetPassword()">Reset Password</button>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        function resetPassword() {
+            let newPassword = document.getElementById("new-password").value.trim();
+            let confirmPassword = document.getElementById("confirm-password").value.trim();
+            let message = document.getElementById("message");
+
+            if (newPassword === "" || confirmPassword === "") {
+                message.style.color = "red";
+                message.innerText = "Please fill in both fields.";
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                message.style.color = "red";
+                message.innerText = "Passwords do not match.";
+                return;
+            }
+
+            // Simulate password update
+            message.style.color = "green";
+            message.innerText = "Password reset successful! Redirecting to login...";
+
+            // Redirect back to login page after 3 seconds
+            setTimeout(() => {
+                window.location.href = "act.html"; // Change this as needed
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>

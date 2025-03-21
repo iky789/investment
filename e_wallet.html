@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Wallet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #33334d);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+        .loading {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .reminder {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .btn {
+            padding: 12px;
+            width: 100%;
+            background: #00ffea;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #ff006a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="loading">Processing Payment...</p>
+        <div class="reminder">
+            <p><strong>👉 Please use MoMo Pay or Vodafone (Telecel Play Ghana) for payment.</strong></p>
+            <p>After completing the repayment, please enter your <strong>Transaction ID</strong>.</p>
+            <p>If you do not backfill your Transaction ID, your payment may not be processed quickly.</p>
+            <p><strong>Do not close the app before entering your Transaction ID.</strong></p>
+        </div>
+        <button class="btn" onclick="continuePayment()">I Know & Continue to Pay</button>
+    </div>
+    <script>
+        function continuePayment() {
+            alert("Redirecting to payment gateway...");
+            window.location.href = "E_walle.html"; // Replace with actual payment gateway link
+        }
+    </script>
+</body>
+</html>

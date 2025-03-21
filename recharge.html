@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #33334d);
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+        .input-box {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+        .quick-amounts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 15px 0;
+        }
+        .amount-btn {
+            background: #ff006a;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            width: 30%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .amount-btn:hover {
+            background: #00ffea;
+            color: black;
+        }
+        .recharge-btn {
+            margin-top: 15px;
+            padding: 12px;
+            width: 100%;
+            background: #00ffea;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .recharge-btn:hover {
+            background: #ff006a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Recharge</h2>
+        <p>Enter amount or select a quick amount</p>
+        <input type="number" id="recharge_amount" class="input-box" placeholder="Enter amount" min="1">
+        <div class="quick-amounts">
+            <button class="amount-btn" onclick="setAmount(100)">₵100</button>
+            <button class="amount-btn" onclick="setAmount(200)">₵200</button>
+            <button class="amount-btn" onclick="setAmount(500)">₵500</button>
+            <button class="amount-btn" onclick="setAmount(1000)">₵1000</button>
+            <button class="amount-btn" onclick="setAmount(2000)">₵2000</button>
+            <button class="amount-btn" onclick="setAmount(5000)">₵5000</button>
+        </div>
+        <a href="./e_wallet.html"><button class="recharge-btn" onclick="recharge()">Recharge Now</button></a>
+    </div>
+    <script>
+        function setAmount(amount) {
+            document.getElementById("recharge_amount").value = amount;
+        }
+        function recharge() {
+            let amount = document.getElementById("recharge_amount").value;
+            if (amount <= 0 || isNaN(amount)) {
+                alert("Please enter a valid amount.");
+                return;
+            }
+            alert("Recharging ₵" + amount + "...");
+            // Implement actual recharge logic here
+        }
+        function recharge() {
+    let amount = document.getElementById("recharge_amount").value;
+    if (amount <= 0 || isNaN(amount)) {
+        alert("Please enter a valid amount.");
+        return;
+    }
+    
+    // Store the recharge amount in sessionStorage
+    sessionStorage.setItem("rechargeAmount", amount);
+
+    alert("Recharging ₵" + amount + "...");
+    
+    // Redirect to the payment page
+    window.location.href = "e_wallet.html";
+}
+
+    </script>
+</body>
+</html>

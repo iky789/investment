@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #33334d);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 450px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+        .user_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .user_info {
+            display: flex;
+            align-items: center;
+        }
+        .user_info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .balance {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .balance .item {
+            text-align: center;
+            flex: 1;
+        }
+        .index_menu {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .index_menu a {
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+        .index_menu img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        .user_list {
+            margin-top: 20px;
+        }
+        .user_card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .user_card a {
+            text-decoration: none;
+            color: white;
+            width: 100%;
+        }
+        .footer_menu {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0px -2px 5px rgba(255, 255, 255, 0.2);
+        }
+        .footer_menu a {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user_header">
+            <div class="user_info">
+                <img src="avatar.png" alt="User Avatar">
+                <div>
+                    <p><strong>Welcome, <span id="username"></span>!</strong></p>
+                    <p>ID: <span id="userId"></span></p>
+                </div>
+            </div>
+            <img src="vip.png" alt="VIP" style="width: 35px; height: 35px;">
+        </div>
+        
+        <div class="balance">
+            <div class="item"><p class="value" id="accountBalance">₵0.00</p><p class="label">Account Balance</p></div>
+            <div class="item"><p class="value">0</p><p class="label">Product Income</p></div>
+            <div class="item"><p class="value">0</p><p class="label">Commission Reward</p></div>
+        </div>
+        
+        <div class="index_menu">
+            <a href="recharge.html"><img src="./photos/recharge-8.png"><p>Recharge</p></a>
+            <a href="#"><img src="./photos/depositphotos_18621533-stock-illustration-order-button.jpg"><p>Withdraw</p></a>
+            <a href="#"><img src="./photos/withdraw-button-computer-icon-RB2K3a3-600.jpg"><p>Orders</p></a>
+        </div>
+        
+        <div class="user_list">
+            <div class="user_card"><a href="bill.html">Bill</a></div>
+            <div class="user_card"><a href="about.html">About</a></div>
+            <div class="user_card"><a href="message.html">Message</a></div>
+            <div class="user_card"><a href="system_notice.html">System Notice</a></div>
+            <div class="user_card"><a href="help_center.html">Help Center</a></div>
+        </div>
+    </div>
+    
+    <div class="footer_menu">
+        <a href="#"><p>Home</p></a>
+        <a href="#"><p>Invest</p></a>
+        <a href="#"><p>Blog</p></a>
+        <a href="#"><p>Account</p></a>
+    </div>
+    
+    <script>
+        let loggedInUser = sessionStorage.getItem("loggedInUser");
+        let userId = sessionStorage.getItem("userId");
+        let userBalance = parseFloat(sessionStorage.getItem("userBalance")) || 0;
+        
+        if (!loggedInUser) {
+            window.location.href = "act.html";
+        } else {
+            document.getElementById("username").innerText = loggedInUser;
+            if (!userId) {
+                userId = Math.floor(100000 + Math.random() * 900000); // Generate unique 6-digit ID
+                sessionStorage.setItem("userId", userId);
+            }
+            document.getElementById("userId").innerText = userId;
+            document.getElementById("accountBalance").innerText = "₵" + userBalance.toFixed(2);
+        }
+    </script>
+</body>
+</html>

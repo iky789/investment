@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Wallet Payment Confirmation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #33334d);
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+        .header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .reminder {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .input-box {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+        .btn {
+            padding: 12px;
+            width: 100%;
+            background: #00ffea;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #ff006a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="header">Payment Confirmation</p>
+        <div class="reminder">
+            <p><strong>Operator:</strong> <span id="operator">Loading...</span></p>
+            <p><strong>E-Cash Number:</strong> <span id="ecashNumber">Loading...</span></p>
+            <p><strong>Recharge Amount:</strong> ₵<span id="rechargeAmount">0.00</span></p>
+            <p>After completing the payment, please enter the <strong>Transaction ID</strong> below.</p>
+        </div>
+        
+        <input type="text" id="transactionId" class="input-box" placeholder="Enter Transaction ID" required>
+        <button class="btn" onclick="confirmPayment()">Confirm Payment</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let storedOperator = sessionStorage.getItem("selectedOperator");
+            let storedEcashNumber = sessionStorage.getItem("ecashNumber");
+            let rechargeAmount = sessionStorage.getItem("rechargeAmount") || "0.00";
+            let loggedInUser = sessionStorage.getItem("loggedInUser");
+            
+            if (!storedOperator || !storedEcashNumber) {
+                alert("Missing payment details. Redirecting...");
+                window.location.href = "previous_page.html"; // Replace with actual previous page
+                return;
+            }
+            
+            if (!loggedInUser) {
+                alert("You are not logged in. Redirecting to login page...");
+                window.location.href = "login.html";
+                return;
+            }
+            
+            document.getElementById("operator").innerText = storedOperator;
+            document.getElementById("ecashNumber").innerText = storedEcashNumber;
+            document.getElementById("rechargeAmount").innerText = rechargeAmount;
+        });
+        
+        function confirmPayment() {
+            let txnId = document.getElementById("transactionId").value.trim();
+            if (txnId === "") {
+                alert("Please enter a valid Transaction ID.");
+                return;
+            }
+            
+            let rechargeAmount = parseFloat(sessionStorage.getItem("rechargeAmount")) || 0;
+            let currentBalance = parseFloat(sessionStorage.getItem("userBalance")) || 0;
+            let newBalance = currentBalance + rechargeAmount;
+            sessionStorage.setItem("userBalance", newBalance);
+            
+            alert("Payment Confirmed! Transaction ID: " + txnId + "\nNew Balance: ₵" + newBalance.toFixed(2));
+            
+            // Redirect to dashboard with updated balance
+            window.location.href = "dashboard.html";
+        }
+    </script>
+</body>
+</html>
